@@ -1,0 +1,12 @@
+body:after {
+    content: url(../images/rnds_logo.png);
+    width: 10px;
+    position: fixed;
+    bottom: 3.5em;
+    left: 3.5em;
+}
+
+.reveal {
+    background-image: url(../images/background.jpg);
+    background-size: cover;
+}
