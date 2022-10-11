@@ -13,7 +13,7 @@
         <div class="slides">
 
             <section>
-                <img data-src="images/rnds_logo.png">
+                <!-- <img data-src="images/rnds_logo.png"> -->
                 <h1>Kotlin VS Ruby</h1>
                 <h3>... и почему он нам не нужен</h3>
                 <aside class="notes">
@@ -26,14 +26,11 @@
 
                     <ul>
                         <li class="fragment">Кодирую уже больше 30 лет</li>
-                        <li class="fragment">Писал убийцу 1С, игрушку для Huawei, комплексную систему для РЖД,
-                            приложение для Госдумы,
-                            билетную
-                            систему для спорта и ещё много чего</li>
-                        <li class="fragment">На платформах Desktop MsDos/Windows/Linux, Android, iOS, Qt, Flutter, Web
-                        </li>
-                        <li class="fragment">На языках Basic, Pascal, C/C++, C#, Java, Kotlin, JS/Typescript, Swift,
-                            Python, Ruby, Dart
+                        <li class="fragment">Писал на калькуляторе, убийцу 1С, игрушку для Huawei, комплексную систему для РЖД,
+                            приложение для Госдумы, билетную систему для спорта и ещё много чего</li>
+                        <li class="fragment">На платформах Desktop MsDos/Windows/Linux, Android, iOS, Qt, Flutter, Web</li>
+                        <li class="fragment">На языках Basic, Pascal, C/C++, C#, Java, Kotlin, JS/Typescript, Python, 
+                            Ruby, Dart, Rust, Go и немного на Swift
                         </li>
                     </ul>
 
@@ -66,7 +63,7 @@
                     <p>Его придумали русские</p>
                 </section>
                 <section>
-                    <h4>А если конкретно, то Андрей Бреслав в 2011</h4>
+                    <h4>А если конкретно, то Андрей Бреслав в 2011 году</h4>
                     <img data-src="images/breslav.jpg" height="400">
                 </section>
                 <section>
@@ -76,22 +73,24 @@
                         <li class="fragment">Поддержка всех современных модных фишек, таких как асинхронность, создание
                             DSL, функциональщина, расширения, делегаты и много что ещё</li>
                         <li class="fragment">Строгая типизация и Null-безопасность</li>
-                        <li class="fragment">Мультиплатформенность</li>
+                        <li class="fragment">Мультиплатформенность</li> 
                     </ul>
+                </section>
+                <section>
+                    <h4>А ещё у него есть вот такой масКот</h4>
+                    <img data-src="images/kotlin_mascot.jpg" height="400">
                 </section>
             </section>
             <section>
                 <section>
-                    <h3>Погнали сравнивать!</h3>
+                    <h3>Погнали сравнивать с Ruby!</h3>
                 </section>
                 <section data-markdown data-auto-animate>
                     <textarea data-template>
                     #### Hello world
                     На Ruby:
                     ```ruby
-                    def hello_world
-                        puts 'Hello, World!'
-                    end
+                    puts 'Hello, World!'
                     ```
                     </textarea>
                 </section>
@@ -100,9 +99,7 @@
                     #### Hello world
                     На Ruby:
                     ```ruby
-                    def hello_world
-                        puts 'Hello, World!'
-                    end
+                    puts 'Hello, World!'
                     ```
                     На Kotlin:
                     ```kotlin
@@ -146,7 +143,7 @@
                     </textarea>
                 </section>
 
-                <section data-markdown>
+                <section data-markdown data-auto-animate>
                     <textarea data-template>
                     #### Блоки
                     Ruby:
@@ -154,6 +151,29 @@
                     def each(list, &block)
                         for item in list
                             block.call(item)
+                        end
+                    end
+                    each([1, 2, 3]) { |item| puts item }
+                    ```
+                    Kotlin:
+                    ```kotlin
+                    fun <T> each(list: List<T>, block: (T) -> Unit) {
+                        for (item in list) {
+                            block(item)
+                        }
+                    }
+                    each(listOf(1, 2, 3)) { println(it) }
+                    ```
+                    </textarea>
+                </section>
+                <section data-markdown data-auto-animate>
+                    <textarea data-template>
+                    #### Блоки
+                    Да, я знаю, на Ruby можно ещё проще в данном случае:
+                    ```ruby
+                    def each(list)
+                        for item in list
+                            yield item
                         end
                     end
                     each([1, 2, 3]) { |item| puts item }
@@ -210,7 +230,7 @@
                     <textarea data-template>
                     #### Как создать data-класс на Ruby?
 
-                    3. Можно возвращать:
+                    3. Также ещё можно возвращать:
 
                         - массив
                         - hash
@@ -236,6 +256,227 @@
                     </textarea>
                 </section>
 
+                <section data-markdown>
+                    #### Цепочечная обработка данных
+
+                    Ruby:
+                    ```ruby
+                    [UserInfo.new('John', 18), UserInfo.new('Patrick', 25)]
+                        .filter { |it| it.age > 20 }
+                        .map { |it| it.name.downcase! }
+                        .join(', ')
+                    ```
+
+                    Kotlin:
+                    ```kotlin
+                    listOf(UserInfo("John", 18), UserInfo("Patrick", 25))
+                        .filter { it.age > 20 }
+                        .map { it.name.toLowerCase() }
+                        .joinToString(", ")
+                    ```
+                    
+                </section>
+                <section data-markdown>
+                    #### Расширение существующего класса
+                    Ruby:
+                    ```ruby
+                    String.define_method('hello') do
+                        puts "Hello #{self}"
+                    end
+
+                    'John'.hello
+                    ```
+                    Kotlin:
+                    ```kotlin
+                    fun String.hello() {
+                        println("Hello $this")
+                    }
+
+                    "John".hello()
+                    ```
+                </section>
+
+                <section data-markdown>
+                    #### Безопасная навигация
+                    Ruby:
+                    ```ruby
+                    people&.car&.model || 'None'
+                    ```
+                    Kotlin:
+                    ```kotlin
+                    people?.car?.model ?: 'None'
+                    ```
+                </section>
+            </section>
+
+            <section>
+                <section data-markdown>
+                    ### Другие фишки Kotlin
+                </section>
+                <section  data-markdown>
+                    #### Null-безопасность
+                    
+                    ```kotlin
+                    fun hello(userInfo: UserInfo?) {
+                        // не скомпилируется, так как userInfo может быть null
+                        // и компилятор заставит с этим что-то сделать
+                        println("Hello ${userInfo.name}") 
+                    }
+                    ```
+
+                    ```kotlin
+                    fun hello(userInfo: UserInfo?) {
+                        // теперь всё хорошо
+                        println("Hello ${userInfo?.name ?: "noname"}") 
+                    }
+                    ```
+                </section>
+
+                <section>
+                    <h4>Smart-cast</h4>
+                    <pre><code data-trim >
+                    fun hello(obj: Any) {
+                        if (obj !is UserInfo) 
+                            throw IllegalParameterException("Object must be UserInfo")
+                        println("Hello ${obj.name}")
+                    }
+                </code></pre>
+                </section>
+                <section  data-markdown data-auto-animate>
+                    #### Крутые enum классы
+                    
+                    Привычные всем enum:
+                    ```kotlin
+                    enum class Permission {
+                        CAN_READ_BLOG,
+                        CAN_WRITE_BLOG
+                    }
+
+                    println("Valid permissions: ${Permission.values.map {
+                         it.name }.joinToString(", ")}")
+                    ```
+                </section>
+                <section  data-markdown data-auto-animate>
+                    #### Крутые enum классы
+
+                    Enum как полноценный класс:
+                    ```kotlin
+                    enum class Permission(
+                        val title: String, 
+                        val description: String
+                    ) {
+                        CAN_READ_BLOG("Read blog", "User can read blog"),
+                        CAN_WRITE_BLOG("Write blog", "User can modify blog");
+
+                        fun isAllowedTo(user: User): Boolean {
+                            TODO()
+                        }
+                    }
+                    ```
+                </section>
+                <section  data-markdown>
+                    #### Sealed классы
+
+                    ```kotlin
+                    sealed class Result {
+                        class Success(): Result()
+                        class Error(val message: String): Result()
+                    }
+
+                    val result = Result.Error("Some error")
+                    when(result) {
+                        is Success -> println("Its fine")
+                        is Error -> throw RuntimeException(result.message)
+                    }
+                    ```
+                </section>
+                <section  data-markdown>
+                    #### Свойства
+
+                    ```kotlin
+                    class Person {
+                        var name: String
+                        var surname: String
+
+                        var fullName: String
+                            get() = "$name $surname"
+                            set(value) {
+                                value.split(" ").also {
+                                    name = it[0]
+                                    surname = it[1]
+                                }
+                            }
+                    }
+
+                    val person = Person()
+                    person.fullName = "John Doe"
+
+                    assertEquals("John", person.name)
+                    assertEquals("Doe", person.surname)
+                    ```
+                </section>
+                <section data-markdown>
+                    #### Делегаты к свойствам
+
+                    ```kotlin
+                    class Person(
+                        val name: String,
+                        val surname: String
+                    ) {
+                        val fullName by lazy { "$name $surname" }
+                    }
+                    ```
+                </section>
+
+                <section data-markdown>
+                    #### Переопределение операторов
+
+                    Можно перегрузить следующие операторы:
+                    ```kotlin
+                    +a, -a, !a, a++, a--, a + b, a - b, a * b, a / b, a % b, 
+                    a..b, a in b, a[i], a[i]=, a(), a += b, a == b, a != b, 
+                    a > b, a < b, a <= b,  a >= b
+                    ```
+                    Также есть инфиксные функции:
+                    ```
+                    infix fun pow(a: Int, b: Int) = TODO()
+
+                    10 pow 20
+                    ```
+                </section>
+                <section data-markdown>
+                    #### Возможность создавать свои DSL
+
+                    ```kotlin
+                    fun result() =
+                        html {
+                            head {
+                                title {+"XML encoding with Kotlin"}
+                            }
+                            body {
+                                h1 {+"XML encoding with Kotlin"}
+                                p  {+"this format can be used as an alternative markup to XML"}
+                                a(href = "https://kotlinlang.org") {+"Kotlin"}
+                                p { for (arg in args) +arg }
+                            }
+                        }
+                    ```
+
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Асинхронность</h3>
+                </section>
+                <section data-auto-animate>
+                    <h5>Асинхронность в Kotlin основана на coroutines (сопрограмма)</h5>
+                    <p>Сопрограмма это функция с возможностью приостановки в определённых точках, сохранения контекста выполнения, 
+                    и переключения на выполнение части другой корутины с последующим возвратом в место прерывания.</p>
+                </section>
+                <section data-auto-animate>
+                    <h5>Асинхронность в Kotlin основана на coroutines (сопрограмма)</h5>
+                    <video data-autoplay src="images/brain_explode.mp4"></video>
+                </section>
 
             </section>
 
