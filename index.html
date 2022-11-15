@@ -72,6 +72,19 @@
                     </aside>
                 </section>
                 <section>
+                    <h4>Google ❤️ Kotlin</h4>
+                    <ul>
+                        <li class="fragment">5 лет назад Kotlin был выбран основным языком разработки под Android</li>
+                        <li class="fragment">Активно контрибьютит в инфраструктуру и компилятор, добавляет новые языковые фичи</li>
+                        <li class="fragment">Совместно с JetBrains создали организацию Kotlin Foundation и привлекают новых членов</li>
+                        <li class="fragment">Активно использует Kotlin в server-side разработке</li>
+                        <li class="fragment">Уже более 8,5 млн строк кода на Kotlin во внутренней кодовой базе</li>
+                    </ul>
+                    <aside class="notes">
+                        Сейчас он отошел от дел и занимается всякой фигнёй, психологией.
+                    </aside>
+                </section>
+                <section>
                     <h4>Основные преимущества</h4>
                     <ul>
                         <li class="fragment">Гибкость и простота синтаксиса</li>
@@ -139,7 +152,7 @@
                     class Cat < Animal
                         attr_reader :name
 
-                        initialize(name)
+                        def initialize(name)
                             @name = name
                         end
 
@@ -217,7 +230,7 @@
                 </section>
 
                 <section data-markdown>
-                    #### Цепочечная обработка данных
+                    #### Конвеерная обработка данных
 
                     Ruby:
                     ```ruby
@@ -505,7 +518,7 @@
                 <section data-markdown>
                     #### Переопределение операторов
 
-                    Можно перегрузить следующие операторы:
+                    Можно переопределить следующие операторы:
                     ```kotlin
                     +a, -a, !a, a++, a--, a + b, a - b, a * b, a / b, a % b, 
                     a..b, a in b, a[i], a[i]=, a(), a += b, a == b, a != b, 
@@ -549,7 +562,8 @@
                 </section>
                 <section data-auto-animate>
                     <h5>Асинхронность в Kotlin основана на coroutines (сопрограмма)</h5>
-                    <video data-autoplay src="images/brain_explode.mp4"></video>
+                    <img data-src="images/exploding_head.gif" height="500">
+                    <!-- <video data-autoplay src="images/exploding_head.gif"></video> -->
                 </section>
                 <section data-markdown data-auto-animate>
                     <textarea data-template>
@@ -563,11 +577,16 @@
                         println("Clients: $clients")
                     }
                     ```
+
+                    Note:
+                    
+                    Обычный синхронный код, как мы привыкли
                     </textarea>
                 </section>
                 <section data-markdown data-auto-animate>
                     <textarea data-template>
                     #### Асинхронный код
+
                     ```
                     suspend fun <T> getFromAcme(path: String): T = 
                         asyncHttpClient.get("http://acme.com/$path")
@@ -577,6 +596,14 @@
                         println("Clients: $clients")
                     }
                     ```
+
+                    Note:
+
+                    Бац и он стал асинхронным.
+
+                    Стоит отметить, что не нужно ключевое слово await как во многих языках, которое часто приводит к ошибке, когда кодер забывает его написать.
+                    Также не нужно возвращать промисы, что делает код более чистым. Конечно возможность перейти на промисы остаётся при необходимости запустить
+                    асинхронные операции параллельно.
                     </textarea>
                 </section>
                 <section data-markdown data-auto-animate>
@@ -596,10 +623,178 @@
 
                     assertEquals(listOf(1, 2, 3), dstList)
                     ```
+
+                    Note:
+
+                    Здесь мы параллельно запускаем несколько корутин на тредпуле и дожидаемся их завершения
+
+                    </textarea>
+                </section>
+                <section>
+                    <h4>Асинхронный код</h4>
+                    <ul>
+                        <li class="fragment">Поддержка честной многопоточности</li>
+                        <li class="fragment">Чтобы код стал асинхронным достаточно добавить <b>suspend</b></li>
+                        <li class="fragment">Наличие различных готовых планировщиков, исполняющих код на главном потоке, на тредпуле, евентлупе и т.д.</li>
+                        <li class="fragment">Гибкость в выборе на каком планировщике какой кусок кода будет исполняться</li>
+                        <li class="fragment">Много стандартных примитивов для работы с асинхронщиной, в том числе Flow - полноценный аналог Rx</li>
+                        <li class="fragment">Поддержка на всех платформах</li>
+                    </ul>
+                </section>
+            </section>
+            <section>
+                <section>
+                    <h3>Кроссплатформенность</h3>
+                    <aside class="notes">
+                        Это не про ту кроссплатформенность, когда мы можем запустить на винде или линуксе.
+                    </aside>
+                </section>
+                <section>
+                    <h4>Поддерживаемые целевые платформы</h4>
+                    <ul>
+                        <li class="fragment">JVM</li>
+                        <li class="fragment">Javascript
+                            <ul>
+                                <li>Web</li>
+                                <li>NodeJS</li>
+                            </ul>
+                        </li>
+                        <li class="fragment">Native LLVM
+                            <ul>
+                                <li>Linux x64</li>
+                                <li>Windows x64</li>
+                                <li>MacOS x64, arm</li>
+                                <li>iOS x64, arm</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section>
+                    <h4>Схемка из интернетов</h4>
+                    <img data-src="images/kotlin_multiplatform.png" >
+                </section>
+                <section data-auto-animate>
+                    <h4>Что хотелось бы отметить</h4>
+                    <ul>
+                        <li>Возможность шарить код</li>
+                        <li>Интероперабельность с языками платформы</li>
+                        <li>Использование существующих библиотек на каждой платформе</li>
+                        <li>Нативность собранного кода на каждой из платформ</li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section data-auto-animate>
+                    <h4>Что хотелось бы отметить</h4>
+                    <ul>
+                        <li>Можно разрабатывать эффективные приложения и сервисы практически на любой 
+                            платформе на одном языке</li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section data-auto-animate>
+                    <h4>Кто уже использует мультиплатформу</h4>
+                    <ul>
+                        <li>JetBrains Space</li>
+                        <li>Yandex Disk, Maps</li>
+                        <li>Netflix</li>
+                        <li>Philips</li>
+                        <li>VMWare</li>
+                    </ul>
+                    <aside class="notes">
+                    </aside>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                    #### Пример компонента на React/TypeScript
+                    ```tsx
+                    type VideoListProps = {
+                      videos: Video[]
+                    }
+                    const VideoList = function(props: VideoListProps) {
+                      return (
+                        <>
+                          { props.videos.map((video) => 
+                            <p key={video.id}>
+                              {video.speaker}: {video.title}
+                            </p>
+                          )}
+                        </>
+                      );
+                    }
+                    ```
+                    </textarea>
+                </section>
+                <section data-markdown>
+                    <textarea data-template>
+                    #### Пример компонента на React/Kotlin
+                    ```kotlin
+                    external interface VideoListProps : Props {
+                        var videos: List<Video>
+                    }
+                    val VideoList = FC<VideoListProps> { props ->
+                        for (video in props.videos) {
+                            p {
+                                key = video.id.toString()
+                                +"${video.speaker}: ${video.title}"
+                            }
+                        }
+                    }
+                    ```
                     </textarea>
                 </section>
             </section>
-
+            <section>
+                <section>
+                  <h3>Заключение</h3>
+                </section>
+                <section>
+                  <h3>Почему же нам не нужен Kotlin?</h3>
+                </section>
+                <section>
+                  <h3>Потому что</h3>
+                  <div class="r-stack">
+                    <img class="fade-in-then-out" data-src="images/kto_mi_1.png" height="500">
+                    <img class="fragment fade-in-then-out" data-src="images/kto_mi_2.png" height="500">
+                    <img class="fragment fade-in-then-out" data-src="images/kto_mi_3.png" height="500">
+                    <img class="fragment fade-in-then-out" data-src="images/kto_mi_4.png" height="500">
+                  </div>
+                </section>
+                <section data-auto-animate>
+                  <h4>А если серьезно...</h4>
+                    <p class="fragment">то я не знаю ответа на этот вопрос</p>
+                  </ul>
+                </section>
+                <section data-auto-animate>
+                  <h4>Потому как</h4>
+                  <ul>
+                    <li class="fragment">От этого языка можно неслабо кайфануть</li>
+                    <li class="fragment">Типизация спасёт от множества глупых ошибок в рантайме</li>
+                    <li class="fragment">На нём можно писать любые приложения и сервисы любой сложности</li>
+                    <li class="fragment">За спиной Kotlin стоят гиганты индустрии и развивают его</li>
+                    <li class="fragment">Банки, кто ранее писал софт на Java переходят на Kotlin</li>
+                  </ul>
+                </section>
+                <section>
+                  <h3>И самый главный аргумент</h3>
+                  <img data-src="images/germiona.jpg" height="500">
+                  <aside  class="notes">
+                    Кто узнал этого чувака? Он тоже топит за Котлин в Центр Инвесте
+                  </aside>
+                </section>
+                <section>
+                  <h3>А он говно не посоветует</h3>
+                  <img data-src="images/green_slonik.jpg" height="500">
+                </section>
+              </section>
+              <section
+                <section>
+                  <img data-src="images/finish.jpg">
+                </section>
+            </section>
         </div>
     </div>
 
