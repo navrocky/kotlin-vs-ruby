@@ -62,27 +62,24 @@
                 <section data-auto-animate>
                     <h3>Kotlin</h3>
                     <img data-src="images/russkie.jpg" height="400">
-                    <p>Его придумали русские</p>
+                    <p>Его придумали русские, чтобы не писать на Java</p>
                 </section>
                 <section>
-                    <h4>А если конкретно, то Андрей Бреслав в 2011 году</h4>
+                    <h4>А если конкретно, то Андрей Бреслав из JetBrains в 2011 году</h4>
                     <img data-src="images/breslav.jpg" height="400">
                     <aside class="notes">
                         Сейчас он отошел от дел и занимается всякой фигнёй, психологией.
                     </aside>
                 </section>
                 <section>
-                    <h4>Google ❤️ Kotlin</h4>
-                    <ul>
-                        <li class="fragment">5 лет назад Kotlin был выбран основным языком разработки под Android</li>
-                        <li class="fragment">Активно контрибьютит в инфраструктуру и компилятор, добавляет новые языковые фичи</li>
-                        <li class="fragment">Совместно с JetBrains создали организацию Kotlin Foundation и привлекают новых членов</li>
-                        <li class="fragment">Активно использует Kotlin в server-side разработке</li>
-                        <li class="fragment">Уже более 8,5 млн строк кода на Kotlin во внутренней кодовой базе</li>
-                    </ul>
-                    <aside class="notes">
-                        Сейчас он отошел от дел и занимается всякой фигнёй, психологией.
-                    </aside>
+                  <h4>Чем плоха Java?</h4>
+                  
+                  <p class="fragment">Она очень многословна</b></p>
+                  <img class="fragment" data-src="images/java.jpg" height="400">
+                  <aside class="notes">
+                    Заходит как-то джавист в столовую и говорит: "Паблик статик файнал Борщ борщ нью Борщ, пожалуйста."
+                </aside>
+
                 </section>
                 <section>
                     <h4>Основные преимущества</h4>
@@ -97,8 +94,21 @@
                         Изначально язык задумывался как улучшенная версия Java, но потом Остапа понесло
                     </aside>
                 </section>
-                <section data-markdown>
-                    #### Говорят что на Котлине писать весело
+                <section>
+                  <h4>Google ❤️ Kotlin</h4>
+                  <ul>
+                      <li class="fragment">5 лет назад Kotlin был выбран основным языком разработки под Android</li>
+                      <li class="fragment">Активно контрибьютит в инфраструктуру и компилятор, добавляет новые языковые фичи</li>
+                      <li class="fragment">Совместно с JetBrains создали организацию Kotlin Foundation и привлекают новых членов</li>
+                      <li class="fragment">Активно использует Kotlin в server-side разработке</li>
+                      <li class="fragment">Уже более 8,5 млн строк кода на Kotlin во внутренней кодовой базе</li>
+                  </ul>
+                  <aside class="notes">
+                      Сейчас он отошел от дел и занимается всякой фигнёй, психологией.
+                  </aside>
+              </section>
+              <section data-markdown>
+                    #### А ещё говорят что на Котлине писать весело
 
                     > Kotlin is so much fun(){}
 
@@ -107,7 +117,7 @@
                     В котлине все функции начинаются с ключевого слова fun
                 </section>
                 <section>
-                    <h4>А ещё у него есть вот такой масКот</h4>
+                    <h4>Ещё у него есть вот такой масКот</h4>
                     <img data-src="images/kotlin_mascot.jpg" height="400">
                 </section>
             </section>
@@ -370,6 +380,8 @@
                     ```
 
                     Note:
+
+                    В руби начина я 2.3.0 с 2015 года
                     
                     В котлине компилятор заставляет написать все эти проверки, иначе не соберётся, дальше будет более подробный пример null-safety.
                 </section>
@@ -480,11 +492,11 @@
                     #### Свойства
 
                     ```kotlin
-                    class Person {
-                        val age: Int
-                        var name: String
+                    class Person(
+                        val age: Int,
+                        var name: String,
                         var surname: String
-
+                    ) { 
                         var fullName: String
                             get() = "$name $surname"
                             set(value) {
@@ -630,7 +642,7 @@
 
                     </textarea>
                 </section>
-                <section>
+                <section data-auto-animate>
                     <h4>Асинхронный код</h4>
                     <ul>
                         <li class="fragment">Поддержка честной многопоточности</li>
@@ -669,11 +681,17 @@
                         </li>
                     </ul>
                     <aside class="notes">
+                      Для native компилятор компилит байткод LLVM, далее уже LLVM генерирует финальный бинарь под целевую платформу
                     </aside>
                 </section>
                 <section>
                     <h4>Схемка из интернетов</h4>
                     <img data-src="images/kotlin_multiplatform.png" >
+                    <aside class="notes">
+                      Тут отображена структура мультиплатформенного проекта. Есть обощённый код, не привязанный к платформе.
+                      И есть платформозависимый код, который может использовать возможность конкретной платформы.
+                      Потом уже всё это компилится соответствующим компиляторов в нативный для платформы бинарь и запускается.
+                    </aside>
                 </section>
                 <section data-auto-animate>
                     <h4>Что хотелось бы отметить</h4>
@@ -683,8 +701,6 @@
                         <li>Использование существующих библиотек на каждой платформе</li>
                         <li>Нативность собранного кода на каждой из платформ</li>
                     </ul>
-                    <aside class="notes">
-                    </aside>
                 </section>
                 <section data-auto-animate>
                     <h4>Что хотелось бы отметить</h4>
@@ -701,10 +717,17 @@
                         <li>JetBrains Space</li>
                         <li>Yandex Disk, Maps</li>
                         <li>Netflix</li>
-                        <li>Philips</li>
+                        <li>Baido</li>
                         <li>VMWare</li>
+                        <li>Philips</li>
+                        <li>Autodesk</li>
+                        <li>Leroy Merlin</li>
                     </ul>
                     <aside class="notes">
+                      space - платформа для разработки, аналог github. Всё написано на котлине, в том числе и весь фронт.
+
+                      Disk, Maps - вся бизнес логика в Android и iOS приложениях
+                      Netflix - мобильные приложения (50% кода общие)
                     </aside>
                 </section>
                 <section data-markdown>
@@ -752,7 +775,7 @@
                   <h3>Заключение</h3>
                 </section>
                 <section>
-                  <h3>Почему же нам не нужен Kotlin?</h3>
+                  <h3>Почему же он нам не нужен?</h3>
                 </section>
                 <section>
                   <h3>Потому что</h3>
@@ -767,15 +790,19 @@
                   <h4>А если серьезно...</h4>
                     <p class="fragment">то я не знаю ответа на этот вопрос</p>
                   </ul>
+                  <aside  class="notes">
+                    Руби и Рельсы далеко не идеальны, у меня к ним много претензий и я уже давно прожег стул.
+                    И в каких-то случаях мы могли бы использовать Котлин, там где не надо хуяк хуяк и в продакшен, а потом быстро забыть. 
+                  </aside>
                 </section>
                 <section data-auto-animate>
                   <h4>Потому как</h4>
                   <ul>
                     <li class="fragment">От этого языка можно неслабо кайфануть</li>
-                    <li class="fragment">Типизация спасёт от множества глупых ошибок в рантайме</li>
+                    <li class="fragment">Типизация спасает от множества глупых ошибок в рантайме</li>
                     <li class="fragment">На нём можно писать любые приложения и сервисы любой сложности</li>
                     <li class="fragment">За спиной Kotlin стоят гиганты индустрии и развивают его</li>
-                    <li class="fragment">Банки, кто ранее писал софт на Java переходят на Kotlin</li>
+                    <li class="fragment">Банки, кто ранее писал софт на Java переходят на Kotlin. А мы хотим с ними дружить</li>
                   </ul>
                 </section>
                 <section>
